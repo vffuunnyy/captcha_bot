@@ -8,9 +8,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-telegrinder = {git = "https://github.com/timoniq/telegrinder.git", rev = "dev"}
+telegrinder = {git = "https://github.com/timoniq/telegrinder.git", rev = "dcced4ebdf2dfa23eb2f9d075faeb71c32a8b5ae"}
 structlog = "^24.4.0"
 envparse = "^0.2.0"
+captcha-generator = {path = "libs/captcha_generator-0.1.0-cp312-cp312-manylinux_2_34_x86_64.whl"}
 
 
 [tool.poetry.group.dev.dependencies]
@@ -22,7 +23,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 target-version = "py312"
-src = ["auto_reply"]
+src = ["captcha_bot"]
 fix = true
 line-length = 100
 
@@ -119,7 +120,7 @@ per-file-ignores."__init__.py" = ["F401", "F403"]
 flake8-tidy-imports.ban-relative-imports = "all"
 
 [tool.ruff.lint.isort]
-known-first-party = ["auto_reply"]
+known-first-party = ["captcha_bot"]
 case-sensitive = true
 combine-as-imports = true
 lines-between-types = 1
