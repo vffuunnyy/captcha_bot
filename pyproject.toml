@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "captcha-bot"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["vffuunnyy <vffuunnyy@gmail.com>"]
 license = "MIT"
@@ -11,7 +11,8 @@ python = "^3.12"
 telegrinder = {git = "https://github.com/timoniq/telegrinder.git", rev = "dcced4ebdf2dfa23eb2f9d075faeb71c32a8b5ae"}
 structlog = "^24.4.0"
 envparse = "^0.2.0"
-captcha-generator = {path = "libs/captcha_generator-0.1.0-cp312-cp312-manylinux_2_34_x86_64.whl"}
+# captcha-generator = {path = "libs/captcha_generator-0.1.0-cp312-cp312-manylinux_2_34_x86_64.whl"}
+captcha-generator = {git = "https://github.com/vffuunnyy/captcha_generator.git"}
 
 
 [tool.poetry.group.dev.dependencies]
@@ -111,6 +112,7 @@ ignore = [
     "T201", # print() used
     "FA102", # `__future__` import "annotations" missing
     "CPY001", # Missing copyright notice at top of file
+    "EXE002", # Checks for executable .py files that do not have a shebang.
 ]
 fixable = ["ALL"]
 unfixable = ["ERA"] # do not autoremove commented out code

@@ -4,13 +4,14 @@ import structlog
 
 from captcha_generator import CaptchaGenerator
 from telegrinder import (
+    ChatJoinRequest,
     Dispatch,
     Message,
     WaiterMachine,
 )
 from telegrinder.rules import (
     HasData,
-    IsPrivate,
+    IsUser,
     Text,
 )
 from telegrinder.types import InputFile
@@ -21,10 +22,10 @@ from captcha_bot.utils import get_captcha_markup
 logger = structlog.get_logger()
 
 dp = Dispatch()
-dp.message.auto_rules.append(IsPrivate())
+# dp.message.auto_rules.append()
 
 wm = WaiterMachine()
-captcha_generator = CaptchaGenerator("./emojis", gap=15)
+captcha_generator = CaptchaGenerator("./emojis")  # type: ignore
 
 
 @dp.message(Text("/start"))
@@ -51,3 +52,8 @@ async def handle_start_command(message: Message) -> None:
     else:
         await cb.answer("Wrong", show_alert=True)
         await bot_message.delete()
+
+
+@dp.chat_join_request(IsUser())
+async def handle_join_request(request: ChatJoinRequest) -> None:
+    await request.api.send_message(request.user_id, "privet!")
